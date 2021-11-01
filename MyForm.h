@@ -1,4 +1,6 @@
 #pragma once
+#include "List.h"
+#include "Pokemon.h"
 
 namespace LAB6MEGANMORALES1221120 {
 
@@ -16,6 +18,8 @@ namespace LAB6MEGANMORALES1221120 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
+
+		List<Pokemon>* Pokedex;
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -36,10 +40,12 @@ namespace LAB6MEGANMORALES1221120 {
 			}
 		}
 	private: System::Windows::Forms::Button^ btnImportar;
+	private: System::Windows::Forms::ListBox^ listPokemon;
 	protected:
-	private: System::Windows::Forms::ListBox^ listBox1;
+
 	private: System::Windows::Forms::Button^ btngeneracion;
 	private: System::Windows::Forms::Button^ btnNombre;
+	private: System::Windows::Forms::OpenFileDialog^ ofdImportar;
 
 	private:
 		/// <summary>
@@ -55,9 +61,10 @@ namespace LAB6MEGANMORALES1221120 {
 		void InitializeComponent(void)
 		{
 			this->btnImportar = (gcnew System::Windows::Forms::Button());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->listPokemon = (gcnew System::Windows::Forms::ListBox());
 			this->btngeneracion = (gcnew System::Windows::Forms::Button());
 			this->btnNombre = (gcnew System::Windows::Forms::Button());
+			this->ofdImportar = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->SuspendLayout();
 			// 
 			// btnImportar
@@ -68,15 +75,16 @@ namespace LAB6MEGANMORALES1221120 {
 			this->btnImportar->TabIndex = 0;
 			this->btnImportar->Text = L"Importar";
 			this->btnImportar->UseVisualStyleBackColor = true;
+			this->btnImportar->Click += gcnew System::EventHandler(this, &MyForm::btnImportar_Click);
 			// 
-			// listBox1
+			// listPokemon
 			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 16;
-			this->listBox1->Location = System::Drawing::Point(95, 85);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(253, 516);
-			this->listBox1->TabIndex = 2;
+			this->listPokemon->FormattingEnabled = true;
+			this->listPokemon->ItemHeight = 16;
+			this->listPokemon->Location = System::Drawing::Point(95, 85);
+			this->listPokemon->Name = L"listPokemon";
+			this->listPokemon->Size = System::Drawing::Size(253, 516);
+			this->listPokemon->TabIndex = 2;
 			// 
 			// btngeneracion
 			// 
@@ -96,6 +104,10 @@ namespace LAB6MEGANMORALES1221120 {
 			this->btnNombre->Text = L"Ordenar por nombre";
 			this->btnNombre->UseVisualStyleBackColor = true;
 			// 
+			// ofdImportar
+			// 
+			this->ofdImportar->FileName = L"openFileDialog1";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -103,7 +115,7 @@ namespace LAB6MEGANMORALES1221120 {
 			this->ClientSize = System::Drawing::Size(580, 628);
 			this->Controls->Add(this->btnNombre);
 			this->Controls->Add(this->btngeneracion);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->listPokemon);
 			this->Controls->Add(this->btnImportar);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
@@ -111,5 +123,58 @@ namespace LAB6MEGANMORALES1221120 {
 
 		}
 #pragma endregion
+		void restablecer() { 
+			Pokedex->clear();
+			listPokemon->Items->Clear();
+		}
+		void llenarListBox() {  
+			int contador = 0;
+			while (Pokedex->get(contador) != nullptr) {
+				string Nombre;
+				int Numero;
+				int Generacion;
+				Nombre = Pokedex->get(contador)->obtenerNombre();
+				Numero = Pokedex->get(contador)->obtenerNumero();
+				Generacion = Pokedex->get(contador)->obtenerGeneracion();
+				String^ nombre = gcnew String(Nombre.c_str());
+				listPokemon->Items->Add(contador +".  "  + Numero + " , " + nombre + " , "+Generacion);
+				contador++; 
+			}
+		}
+		void MarshalString(String^ s, string& os) { 
+			using namespace Runtime::InteropServices;
+			const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
+			os = chars;
+			Marshal::FreeHGlobal(IntPtr((void*)chars));
+		}
+	private: System::Void btnImportar_Click(System::Object^ sender, System::EventArgs^ e) {
+		ofdImportar->Filter = "Archivos separados por coma (csv) | *.csv";
+		ofdImportar->FileName = "";
+
+		if (ofdImportar->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			restablecer();
+			array<String^>^ archivoLineas = File::ReadAllLines(ofdImportar->FileName);
+			if (archivoLineas->Length > 0) {
+				//LLenar list playlist
+				for (int i = 0; i < archivoLineas->Length; i++) {
+					array<String^>^ columnaArchivo = archivoLineas[i]->Split(',');
+					int j = 0;
+					while (j < columnaArchivo->Length) {
+						string namePokemon;
+						int generacion = Convert::ToInt64(columnaArchivo[2]);
+						int numero = Convert::ToInt64(columnaArchivo[0]);
+						MarshalString(columnaArchivo[1], namePokemon);	
+						Pokemon* pokemon = new Pokemon(namePokemon, generacion,numero);
+						Pokedex->add(pokemon);	
+						j++;
+					}
+				}
+				llenarListBox();
+			}
+		}
+		else {
+			MessageBox::Show("No se seleccionó ningún archivo", "Archivo no seleccionado", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+		}
+	}
 	};
 }

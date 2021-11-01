@@ -18,6 +18,17 @@ class List
 	int size = 0;
 
 public:
+	void add(T* item) {
+		Node* node = new Node(item);
+		if (this->isEmpty()) {
+			this->head = this->tail = node;
+		}
+		else {
+			this->tail->next = node;
+			this->tail = this->tail->next;
+		}
+		this->size++;
+	}
 	int getSize() {
 		return this->size;
 	}
