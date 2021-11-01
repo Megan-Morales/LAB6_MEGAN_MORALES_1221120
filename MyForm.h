@@ -26,6 +26,7 @@ namespace LAB6MEGANMORALES1221120 {
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			Pokedex = new List<Pokemon>();
 		}
 
 	protected:
@@ -103,6 +104,7 @@ namespace LAB6MEGANMORALES1221120 {
 			this->btnNombre->TabIndex = 4;
 			this->btnNombre->Text = L"Ordenar por nombre";
 			this->btnNombre->UseVisualStyleBackColor = true;
+			this->btnNombre->Click += gcnew System::EventHandler(this, &MyForm::btnNombre_Click);
 			// 
 			// ofdImportar
 			// 
@@ -156,18 +158,14 @@ namespace LAB6MEGANMORALES1221120 {
 			array<String^>^ archivoLineas = File::ReadAllLines(ofdImportar->FileName);
 			if (archivoLineas->Length > 0) {
 				//LLenar list playlist
-				for (int i = 0; i < archivoLineas->Length; i++) {
+				for (int i = 0; i < archivoLineas->Length-1; i++) {
 					array<String^>^ columnaArchivo = archivoLineas[i]->Split(',');
-					int j = 0;
-					while (j < columnaArchivo->Length) {
-						string namePokemon;
-						int generacion = Convert::ToInt64(columnaArchivo[2]);
-						int numero = Convert::ToInt64(columnaArchivo[0]);
-						MarshalString(columnaArchivo[1], namePokemon);	
-						Pokemon* pokemon = new Pokemon(namePokemon, generacion,numero);
-						Pokedex->add(pokemon);	
-						j++;
-					}
+					string namePokemon;
+					int generacion = Convert::ToInt64(columnaArchivo[2]);
+					int numero = Convert::ToInt64(columnaArchivo[0]);
+					MarshalString(columnaArchivo[1], namePokemon);	
+					Pokemon* pokemon = new Pokemon(namePokemon, generacion,numero);
+					Pokedex->add(pokemon);		
 				}
 				llenarListBox();
 			}
@@ -176,5 +174,8 @@ namespace LAB6MEGANMORALES1221120 {
 			MessageBox::Show("No se seleccionó ningún archivo", "Archivo no seleccionado", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		}
 	}
-	};
+	private: System::Void btnNombre_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+};
 }
