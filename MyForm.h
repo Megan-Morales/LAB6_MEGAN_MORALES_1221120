@@ -47,6 +47,10 @@ namespace LAB6MEGANMORALES1221120 {
 	private: System::Windows::Forms::Button^ btngeneracion;
 	private: System::Windows::Forms::Button^ btnNombre;
 	private: System::Windows::Forms::OpenFileDialog^ ofdImportar;
+	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::ListBox^ listBox2;
+	private: System::Windows::Forms::ListBox^ listBox3;
+	private: System::Windows::Forms::Label^ label1;
 
 	private:
 		/// <summary>
@@ -66,13 +70,17 @@ namespace LAB6MEGANMORALES1221120 {
 			this->btngeneracion = (gcnew System::Windows::Forms::Button());
 			this->btnNombre = (gcnew System::Windows::Forms::Button());
 			this->ofdImportar = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->listBox2 = (gcnew System::Windows::Forms::ListBox());
+			this->listBox3 = (gcnew System::Windows::Forms::ListBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnImportar
 			// 
-			this->btnImportar->Location = System::Drawing::Point(12, 12);
+			this->btnImportar->Location = System::Drawing::Point(22, 12);
 			this->btnImportar->Name = L"btnImportar";
-			this->btnImportar->Size = System::Drawing::Size(75, 39);
+			this->btnImportar->Size = System::Drawing::Size(75, 48);
 			this->btnImportar->TabIndex = 0;
 			this->btnImportar->Text = L"Importar";
 			this->btnImportar->UseVisualStyleBackColor = true;
@@ -82,14 +90,14 @@ namespace LAB6MEGANMORALES1221120 {
 			// 
 			this->listPokemon->FormattingEnabled = true;
 			this->listPokemon->ItemHeight = 16;
-			this->listPokemon->Location = System::Drawing::Point(95, 85);
+			this->listPokemon->Location = System::Drawing::Point(22, 76);
 			this->listPokemon->Name = L"listPokemon";
-			this->listPokemon->Size = System::Drawing::Size(253, 516);
+			this->listPokemon->Size = System::Drawing::Size(184, 516);
 			this->listPokemon->TabIndex = 2;
 			// 
 			// btngeneracion
 			// 
-			this->btngeneracion->Location = System::Drawing::Point(401, 251);
+			this->btngeneracion->Location = System::Drawing::Point(212, 238);
 			this->btngeneracion->Name = L"btngeneracion";
 			this->btngeneracion->Size = System::Drawing::Size(110, 48);
 			this->btngeneracion->TabIndex = 3;
@@ -98,7 +106,7 @@ namespace LAB6MEGANMORALES1221120 {
 			// 
 			// btnNombre
 			// 
-			this->btnNombre->Location = System::Drawing::Point(401, 338);
+			this->btnNombre->Location = System::Drawing::Point(212, 302);
 			this->btnNombre->Name = L"btnNombre";
 			this->btnNombre->Size = System::Drawing::Size(110, 45);
 			this->btnNombre->TabIndex = 4;
@@ -110,11 +118,51 @@ namespace LAB6MEGANMORALES1221120 {
 			// 
 			this->ofdImportar->FileName = L"openFileDialog1";
 			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->ItemHeight = 16;
+			this->listBox1->Location = System::Drawing::Point(341, 76);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(184, 516);
+			this->listBox1->TabIndex = 5;
+			// 
+			// listBox2
+			// 
+			this->listBox2->FormattingEnabled = true;
+			this->listBox2->ItemHeight = 16;
+			this->listBox2->Location = System::Drawing::Point(547, 76);
+			this->listBox2->Name = L"listBox2";
+			this->listBox2->Size = System::Drawing::Size(172, 516);
+			this->listBox2->TabIndex = 6;
+			// 
+			// listBox3
+			// 
+			this->listBox3->FormattingEnabled = true;
+			this->listBox3->ItemHeight = 16;
+			this->listBox3->Location = System::Drawing::Point(753, 76);
+			this->listBox3->Name = L"listBox3";
+			this->listBox3->Size = System::Drawing::Size(172, 516);
+			this->listBox3->TabIndex = 7;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(391, 43);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(67, 17);
+			this->label1->TabIndex = 8;
+			this->label1->Text = L"Shell sort";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(580, 628);
+			this->ClientSize = System::Drawing::Size(938, 628);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->listBox3);
+			this->Controls->Add(this->listBox2);
+			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->btnNombre);
 			this->Controls->Add(this->btngeneracion);
 			this->Controls->Add(this->listPokemon);
@@ -122,6 +170,7 @@ namespace LAB6MEGANMORALES1221120 {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
