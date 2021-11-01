@@ -51,6 +51,8 @@ namespace LAB6MEGANMORALES1221120 {
 	private: System::Windows::Forms::ListBox^ listBox2;
 	private: System::Windows::Forms::ListBox^ listBox3;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
 
 	private:
 		/// <summary>
@@ -74,6 +76,8 @@ namespace LAB6MEGANMORALES1221120 {
 			this->listBox2 = (gcnew System::Windows::Forms::ListBox());
 			this->listBox3 = (gcnew System::Windows::Forms::ListBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// btnImportar
@@ -154,11 +158,31 @@ namespace LAB6MEGANMORALES1221120 {
 			this->label1->TabIndex = 8;
 			this->label1->Text = L"Shell sort";
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(586, 43);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(94, 17);
+			this->label2->TabIndex = 9;
+			this->label2->Text = L"Selection sort";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(806, 43);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(72, 17);
+			this->label3->TabIndex = 10;
+			this->label3->Text = L"Quick sort";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(938, 628);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->listBox3);
 			this->Controls->Add(this->listBox2);
