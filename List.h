@@ -8,9 +8,11 @@ class List
 	{
 		T* item;
 		Node* next;
+		Node* back;
 		Node(T* item) {
 			this->item = item;
 			this->next = nullptr;
+			this->back = nullptr;
 		}
 	};
 	Node* head;
@@ -24,7 +26,8 @@ public:
 			this->head = this->tail = node;
 		}
 		else {
-			this->tail->next = node;
+			this->tail->next = node;//1,2,3    
+			node->back = this->tail;
 			this->tail = this->tail->next;
 		}
 		this->size++;
@@ -52,5 +55,6 @@ public:
 		this->tail = nullptr;
 		this->size = 0;
 	}
+
 };
 

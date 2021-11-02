@@ -1,6 +1,7 @@
 #pragma once
 #include "List.h"
 #include "Pokemon.h"
+#include "Orden.h"
 
 namespace LAB6MEGANMORALES1221120 {
 
@@ -20,6 +21,8 @@ namespace LAB6MEGANMORALES1221120 {
 	public:
 
 		List<Pokemon>* Pokedex;
+		Orden<List<Pokemon>>* ordenar;
+
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -27,6 +30,7 @@ namespace LAB6MEGANMORALES1221120 {
 			//TODO: agregar código de constructor aquí
 			//
 			Pokedex = new List<Pokemon>();
+			ordenar = new Orden <List<Pokemon>>(Pokedex);
 		}
 
 	protected:
