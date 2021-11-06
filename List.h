@@ -64,5 +64,17 @@ public:
 		*item1 = *item2;
 		*item2 = temp;
 	}
+	void setItem(int index, T* item) {
+		if (index >= this->size || index < 0) {
+
+		}
+		Node* iterator = this->head;
+		int i = 0;
+		while (i < index) {
+			iterator = iterator->next;
+			i++;
+		}
+		iterator->item = item;
+	}
 };
 
