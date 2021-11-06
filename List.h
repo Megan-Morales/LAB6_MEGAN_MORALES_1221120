@@ -1,6 +1,4 @@
 #pragma once
-
-
 template <typename T>
 class List
 {
@@ -55,6 +53,14 @@ public:
 		this->tail = nullptr;
 		this->size = 0;
 	}
-
+	T* getNext(T* item) {
+		return item->next;
+	}
+	//Ver que en esta función hacemos el intercambio de valores entre los parametros que le enviamos a la función
+	void swap(T* item1, T* item2) {
+		T temp = *item1; // recordar que el * antes de la variable significa que extraemos el valor al cual apunta el puntero
+		*item1 = *item2;
+		*item2 = temp;
+	}
 };
 
