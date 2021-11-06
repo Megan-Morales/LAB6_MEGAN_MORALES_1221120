@@ -13,8 +13,5 @@ public:
 	string obtenerNombre();
 	int obtenerGeneracion();
 	int obtenerNumero();
-
-
-
 };
 
