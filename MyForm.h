@@ -1,7 +1,6 @@
 #pragma once
 #include "List.h"
 #include "Pokemon.h"
-#include "Orden.h"
 
 namespace LAB6MEGANMORALES1221120 {
 
@@ -21,6 +20,7 @@ namespace LAB6MEGANMORALES1221120 {
 	public:
 
 		List<Pokemon>* Pokedex;
+<<<<<<< HEAD
 	private: System::Windows::Forms::Button^ button1;
 	public:
 	private: System::Windows::Forms::Button^ button2;
@@ -28,6 +28,8 @@ namespace LAB6MEGANMORALES1221120 {
 	private: System::Windows::Forms::Button^ button4;
 		   Orden<List<Pokemon>>* ordenar;
 
+=======
+>>>>>>> parent of 39b426a (Commit)
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -35,7 +37,6 @@ namespace LAB6MEGANMORALES1221120 {
 			//TODO: agregar código de constructor aquí
 			//
 			Pokedex = new List<Pokemon>();
-			ordenar = new Orden <List<Pokemon>>(Pokedex);
 		}
 
 	protected:

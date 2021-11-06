@@ -2,6 +2,7 @@
 template <typename T>
 class Orden
 {
+<<<<<<< HEAD
     T* item = nullptr;
 public:
     Orden(T* item) {
@@ -82,5 +83,8 @@ public:
         }
         return 0;
     }
+=======
+public: virtual int compare(T a, T b) = 0;
+>>>>>>> parent of 39b426a (Commit)
 };
 
