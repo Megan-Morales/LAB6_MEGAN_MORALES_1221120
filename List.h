@@ -1,4 +1,6 @@
 #pragma once
+
+
 template <typename T>
 class List
 {
@@ -6,9 +8,11 @@ class List
 	{
 		T* item;
 		Node* next;
+		Node* back;
 		Node(T* item) {
 			this->item = item;
 			this->next = nullptr;
+			this->back = nullptr;
 		}
 	};
 	Node* head;
@@ -22,8 +26,9 @@ public:
 			this->head = this->tail = node;
 		}
 		else {
-			this->tail->next = node;
-			this->tail = this->tail->next;
+			this->tail->next = node; //this -> tail = cola actual en la lista
+			this->tail->next->back = this->tail; // node = this->tail->next
+			this->tail = this->tail->next; 
 		}
 		this->size++;
 	}
@@ -50,20 +55,14 @@ public:
 		this->tail = nullptr;
 		this->size = 0;
 	}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 	T* getNext(T* item) {
 		return item->next;
 	}
 	//Ver que en esta función hacemos el intercambio de valores entre los parametros que le enviamos a la función
-	void swap(T* item1, T* item2) {
+	void swap(T* item1, T* item2) { 
 		T temp = *item1; // recordar que el * antes de la variable significa que extraemos el valor al cual apunta el puntero
 		*item1 = *item2;
 		*item2 = temp;
 	}
-=======
->>>>>>> parent of 39b426a (Commit)
->>>>>>> 9984f4c7992def780f07758b79e06df7276f4710
 };
 

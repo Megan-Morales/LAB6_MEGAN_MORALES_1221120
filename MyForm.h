@@ -1,6 +1,7 @@
 #pragma once
 #include "List.h"
 #include "Pokemon.h"
+#include "Orden.h"
 
 namespace LAB6MEGANMORALES1221120 {
 
@@ -20,19 +21,7 @@ namespace LAB6MEGANMORALES1221120 {
 	public:
 
 		List<Pokemon>* Pokedex;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	private: System::Windows::Forms::Button^ button1;
-	public:
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-		   Orden<List<Pokemon>>* ordenar;
-
-=======
->>>>>>> parent of 39b426a (Commit)
->>>>>>> 9984f4c7992def780f07758b79e06df7276f4710
+		Orden<List<Pokemon>>* ordenar;
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -40,6 +29,8 @@ namespace LAB6MEGANMORALES1221120 {
 			//TODO: agregar código de constructor aquí
 			//
 			Pokedex = new List<Pokemon>();
+			ordenar = new Orden<List<Pokemon>>(Pokedex);
+
 		}
 
 	protected:
@@ -91,17 +82,14 @@ namespace LAB6MEGANMORALES1221120 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btnImportar
 			// 
-			this->btnImportar->Location = System::Drawing::Point(22, 12);
+			this->btnImportar->Location = System::Drawing::Point(16, 10);
+			this->btnImportar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnImportar->Name = L"btnImportar";
-			this->btnImportar->Size = System::Drawing::Size(75, 48);
+			this->btnImportar->Size = System::Drawing::Size(56, 39);
 			this->btnImportar->TabIndex = 0;
 			this->btnImportar->Text = L"Importar";
 			this->btnImportar->UseVisualStyleBackColor = true;
@@ -110,28 +98,31 @@ namespace LAB6MEGANMORALES1221120 {
 			// listPokemon
 			// 
 			this->listPokemon->FormattingEnabled = true;
-			this->listPokemon->ItemHeight = 16;
-			this->listPokemon->Location = System::Drawing::Point(22, 76);
+			this->listPokemon->Location = System::Drawing::Point(16, 62);
+			this->listPokemon->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listPokemon->Name = L"listPokemon";
-			this->listPokemon->Size = System::Drawing::Size(184, 516);
+			this->listPokemon->Size = System::Drawing::Size(139, 420);
 			this->listPokemon->TabIndex = 2;
 			// 
 			// btngeneracion
 			// 
-			this->btngeneracion->Location = System::Drawing::Point(389, 12);
+			this->btngeneracion->Location = System::Drawing::Point(159, 193);
+			this->btngeneracion->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btngeneracion->Name = L"btngeneracion";
-			this->btngeneracion->Size = System::Drawing::Size(165, 74);
+			this->btngeneracion->Size = System::Drawing::Size(82, 39);
 			this->btngeneracion->TabIndex = 3;
-			this->btngeneracion->Text = L"Ordenar por generación (Shell sort)";
+			this->btngeneracion->Text = L"Ordenar por generación";
 			this->btngeneracion->UseVisualStyleBackColor = true;
+			this->btngeneracion->Click += gcnew System::EventHandler(this, &MyForm::btngeneracion_Click);
 			// 
 			// btnNombre
 			// 
-			this->btnNombre->Location = System::Drawing::Point(805, 101);
+			this->btnNombre->Location = System::Drawing::Point(159, 245);
+			this->btnNombre->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnNombre->Name = L"btnNombre";
-			this->btnNombre->Size = System::Drawing::Size(154, 45);
+			this->btnNombre->Size = System::Drawing::Size(82, 37);
 			this->btnNombre->TabIndex = 4;
-			this->btnNombre->Text = L"Ordenar por nombre (Quick Sort)";
+			this->btnNombre->Text = L"Ordenar por nombre";
 			this->btnNombre->UseVisualStyleBackColor = true;
 			this->btnNombre->Click += gcnew System::EventHandler(this, &MyForm::btnNombre_Click);
 			// 
@@ -142,112 +133,76 @@ namespace LAB6MEGANMORALES1221120 {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 16;
-			this->listBox1->Location = System::Drawing::Point(370, 152);
+			this->listBox1->Location = System::Drawing::Point(256, 62);
+			this->listBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(184, 516);
+			this->listBox1->Size = System::Drawing::Size(139, 420);
 			this->listBox1->TabIndex = 5;
 			// 
 			// listBox2
 			// 
 			this->listBox2->FormattingEnabled = true;
-			this->listBox2->ItemHeight = 16;
-			this->listBox2->Location = System::Drawing::Point(581, 152);
+			this->listBox2->Location = System::Drawing::Point(410, 62);
+			this->listBox2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listBox2->Name = L"listBox2";
-			this->listBox2->Size = System::Drawing::Size(172, 516);
+			this->listBox2->Size = System::Drawing::Size(130, 420);
 			this->listBox2->TabIndex = 6;
 			// 
 			// listBox3
 			// 
 			this->listBox3->FormattingEnabled = true;
-			this->listBox3->ItemHeight = 16;
-			this->listBox3->Location = System::Drawing::Point(787, 152);
+			this->listBox3->Location = System::Drawing::Point(565, 62);
+			this->listBox3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->listBox3->Name = L"listBox3";
-			this->listBox3->Size = System::Drawing::Size(172, 516);
+			this->listBox3->Size = System::Drawing::Size(130, 420);
 			this->listBox3->TabIndex = 7;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(434, 116);
+			this->label1->Location = System::Drawing::Point(293, 35);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(67, 17);
+			this->label1->Size = System::Drawing::Size(50, 13);
 			this->label1->TabIndex = 8;
 			this->label1->Text = L"Shell sort";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(629, 116);
+			this->label2->Location = System::Drawing::Point(440, 35);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(94, 17);
+			this->label2->Size = System::Drawing::Size(71, 13);
 			this->label2->TabIndex = 9;
 			this->label2->Text = L"Selection sort";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(849, 116);
+			this->label3->Location = System::Drawing::Point(604, 35);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(72, 17);
+			this->label3->Size = System::Drawing::Size(55, 13);
 			this->label3->TabIndex = 10;
 			this->label3->Text = L"Quick sort";
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(389, 102);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(154, 45);
-			this->button1->TabIndex = 11;
-			this->button1->Text = L"Ordenar por nombre (Shell sort)";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(590, 102);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(154, 45);
-			this->button2->TabIndex = 12;
-			this->button2->Text = L"Ordenar por nombre (Selection sort)";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(590, 12);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(154, 74);
-			this->button3->TabIndex = 13;
-			this->button3->Text = L"Ordenar por generación (Selection sort)";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(805, 12);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(154, 74);
-			this->button4->TabIndex = 14;
-			this->button4->Text = L"Ordenar por generación (Quick sort)";
-			this->button4->UseVisualStyleBackColor = true;
-			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1127, 739);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->btnNombre);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(773, 510);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->listBox3);
 			this->Controls->Add(this->listBox2);
 			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->btnNombre);
 			this->Controls->Add(this->btngeneracion);
 			this->Controls->Add(this->listPokemon);
 			this->Controls->Add(this->btnImportar);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
@@ -269,8 +224,8 @@ namespace LAB6MEGANMORALES1221120 {
 				Numero = Pokedex->get(contador)->obtenerNumero();
 				Generacion = Pokedex->get(contador)->obtenerGeneracion();
 				String^ nombre = gcnew String(Nombre.c_str());
-				ListBox->Items->Add(contador + ".  " + Numero + " , " + nombre + " , " + Generacion);
-				contador++;
+				ListBox->Items->Add(contador +".  "  + Numero + " , " + nombre + " , "+Generacion);
+				contador++; 
 			}
 		}
 		void MarshalString(String^ s, string& os) { 
@@ -298,6 +253,8 @@ namespace LAB6MEGANMORALES1221120 {
 					Pokedex->add(pokemon);		
 				}
 				llenarListBox(listPokemon);
+				/*ordenar->prueba();*/
+
 			}
 		}
 		else {
@@ -305,15 +262,17 @@ namespace LAB6MEGANMORALES1221120 {
 		}
 	}
 	private: System::Void btnNombre_Click(System::Object^ sender, System::EventArgs^ e) {
-		
 		/*ordenar->selectionSortNombre();
 		llenarListBox(listBox2);*/
 		/*int high = (Pokedex->getSize()) - 1;
 		ordenar->quickSortNombre(0, high);
 		llenarListBox(listBox3);*/
-		/*ordenar->shellSort((Pokedex->getSize()) - 1);
-		llenarListBox(listBox1);*/
+		ordenar->shellSort((Pokedex->getSize()) - 1);
+		llenarListBox(listBox1);
 
 	}
+private: System::Void btngeneracion_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+}
 };
 }
